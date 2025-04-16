@@ -1,7 +1,7 @@
 {
   "name": "api-mvc-ts",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "npx nodemon src/server.ts --watch 'src/' -e ts",
     "build": "npx tsc",
