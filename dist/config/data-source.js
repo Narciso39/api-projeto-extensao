@@ -32,8 +32,8 @@ exports.AppDataSource = new typeorm_1.DataSource({
     url: process.env.DATABASE_URL,
     synchronize: false,
     logging: false,
-    entities: ["src/entities/*.js"],
-    migrations: ["src/config/migrations/*.js"],
+    entities: ["dist/entities/*.js"],
+    migrations: ["dist/config/migrations/*.js"],
     ssl: true,
     extra: {
         ssl: {
