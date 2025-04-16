@@ -8,8 +8,8 @@ export const AppDataSource = new DataSource({
   url: process.env.DATABASE_URL,
   synchronize: false,
   logging: false,
-  entities: ["src/entities/*.ts"],
-  migrations: ["src/config/migrations/*.ts"],
+  entities: ["src/entities/*.js"],
+  migrations: ["src/config/migrations/*.js"],
   ssl: true,
   extra: {
     ssl: {
