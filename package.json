@@ -7,10 +7,10 @@
     "build": "npx tsc",
     "start": "node ./dist/server.js",
     "typeorm": "typeorm-ts-node-commonjs -d ./src/config/data-source.ts",
-    "migration:create": "npx typeorm -- migration:create ./src/config/migrations",
-    "migration:generate": "npx run typeorm -- migration:generate -p",
-    "migration:run": "npx run typeorm -- migration:run",
-    "migration:revert": "npm run typeorm -- migration:revert"
+    "migration:generate": "npx ts-node -P ./tsconfig.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -d ./src/config/data-source.ts ./src/config/migrations",
+    "migration:create": "npx ts-node -r tsconfig-paths/register -P tsconfig.json ./node_modules/typeorm/cli.js migration:create ./src/config/migrations/$npm_config_name",
+    "migration:run": "npx ts-node -P ./tsconfig.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d ./src/config/data-source.ts",
+    "migration:revert": "npx ts-node -P ./tsconfig.json -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d ./src/config/data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -39,6 +39,7 @@
     "@types/node": "^22.14.1",
     "bcryptjs": "^3.0.2",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.2"
   }
 }

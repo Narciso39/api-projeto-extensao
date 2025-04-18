@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import UserModel from "../models/UserModel";
-import { User, UserCreateData } from "../entities/UserEntity";
+import { User  } from "../entities/UserEntity";
+import { UserCreateData } from "../@types/User.type";
 
 export class UserController {
   static async getAllUsers(req: Request, res: Response): Promise<void> {

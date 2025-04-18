@@ -1,4 +1,3 @@
-// src/entities/UserEntity.ts
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -48,8 +47,3 @@ export class User {
   static repository: Repository<User> = AppDataSource.getRepository(User);
 }
 
-export type UserCreateData = {
-  name: string;
-  email: string;
-  password: string;
-};

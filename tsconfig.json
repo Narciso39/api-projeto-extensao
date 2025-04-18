@@ -1,10 +1,11 @@
-
- 
 {
   "compilerOptions": {
     "target": "ES6",
     "module": "commonjs",
     "rootDir": "./src/",
+    "paths": {
+      "@config/*": ["config/*"]
+    },
     "moduleResolution": "node",
     "baseUrl": ".",
     "outDir": "./dist/",
@@ -13,8 +14,7 @@
     "strict": true,
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "experimentalDecorators": true
   },
   "ts-node": { "transpileOnly": true }
 }
- 

@@ -1,4 +1,5 @@
-import { User, UserCreateData } from "../entities/UserEntity";
+import { UserCreateData } from "../@types/User.type";
+import { User } from "../entities/UserEntity";
 import { v4 as uuidv4 } from 'uuid';
 export class UserRepository {
   static async findAll() {

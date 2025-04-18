@@ -1,4 +1,5 @@
-import { User, UserCreateData } from "../entities/UserEntity";
+import { UserCreateData } from "../@types/User.type";
+import { User } from "../entities/UserEntity";
 import { UserRepository } from "../repositories/UserRepository";
 
 class UserModel {

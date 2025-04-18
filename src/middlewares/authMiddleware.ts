@@ -1,14 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import * as dotenv from "dotenv";
+import { tokenPayload } from "../@types/Token.type";
 
 dotenv.config();
 
-interface tokenPayload {
-    id: string;
-    iat: number;
-    exp: number;
-}
+
 const authMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   const { authorization } = req.headers;
 
