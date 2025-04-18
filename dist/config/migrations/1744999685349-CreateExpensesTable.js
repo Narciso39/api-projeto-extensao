@@ -9,33 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserTable1744667185721 = void 0;
+exports.CreateExpensesTable1744999685349 = void 0;
 const typeorm_1 = require("typeorm");
-class CreateUserTable1744667185721 {
+class CreateExpensesTable1744999685349 {
     up(queryRunner) {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryRunner.createTable(new typeorm_1.Table({
-                name: "users",
+                name: "expenses",
                 columns: [
                     {
                         name: "id",
-                        type: "uuid",
+                        type: "int",
                         isPrimary: true,
-                        generationStrategy: "uuid",
-                        default: "gen_random_uuid()",
+                        isGenerated: true,
+                        generationStrategy: "increment",
                     },
                     {
                         name: "name",
                         type: "varchar",
                     },
                     {
-                        name: "email",
-                        type: "varchar",
-                        isUnique: true,
+                        name: "valueExpense",
+                        type: "bigint",
+                        isNullable: false
                     },
                     {
-                        name: "password",
+                        name: "description",
                         type: "varchar",
+                    },
+                    {
+                        name: "user_id",
+                        type: "uuid",
                     },
                     {
                         name: "created_at",
@@ -49,12 +53,20 @@ class CreateUserTable1744667185721 {
                     },
                 ],
             }));
+            yield queryRunner.createForeignKey("expenses", new typeorm_1.TableForeignKey({
+                columnNames: ["user_id"],
+                referencedColumnNames: ["id"],
+                referencedTableName: "users",
+                onDelete: "CASCADE",
+                name: "FK_expenses_user",
+            }));
         });
     }
     down(queryRunner) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield queryRunner.dropTable("users");
+            yield queryRunner.dropForeignKey("expenses", "FK_expenses_user");
+            yield queryRunner.dropTable("expenses");
         });
     }
 }
-exports.CreateUserTable1744667185721 = CreateUserTable1744667185721;
+exports.CreateExpensesTable1744999685349 = CreateExpensesTable1744999685349;

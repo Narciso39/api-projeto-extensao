@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var User_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-// src/entities/UserEntity.ts
 const typeorm_1 = require("typeorm");
 const data_source_1 = require("../config/data-source");
 const uuid_1 = require("uuid");
