@@ -1,7 +1,7 @@
-import { Entity } from "typeorm";
+// import { Entity } from "typeorm";
 
 
-@Entity('expenses')
-export class Expense {
+// @Entity('expenses')
+// export class Expense {
 
-}
+// }

@@ -1,4 +1,4 @@
 
-export class ExpenseRepository {
+// export class ExpenseRepository {
     
-}
+// }
