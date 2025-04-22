@@ -18,11 +18,12 @@ const typeorm_1 = require("typeorm");
 const data_source_1 = require("../config/data-source");
 const uuid_1 = require("uuid");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const ExpenseEntity_1 = require("./ExpenseEntity");
 let User = User_1 = class User {
     hashPassword() {
         this.password = bcryptjs_1.default.hashSync(this.password, 8);
     }
-    constructor(id, name, email, password) {
+    constructor(id, name, email, password, expenses) {
         if (id)
             this.id = id;
         if (name)
@@ -31,6 +32,8 @@ let User = User_1 = class User {
             this.email = email;
         if (password)
             this.password = password;
+        if (expenses)
+            this.expenses = expenses;
     }
     generateId() {
         if (!this.id) {
@@ -64,6 +67,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], User.prototype, "hashPassword", null);
 __decorate([
+    (0, typeorm_1.OneToMany)(() => ExpenseEntity_1.Expense, (expense) => expense.user),
+    __metadata("design:type", Array)
+], User.prototype, "expenses", void 0);
+__decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -71,5 +78,5 @@ __decorate([
 ], User.prototype, "generateId", null);
 exports.User = User = User_1 = __decorate([
     (0, typeorm_1.Entity)("users"),
-    __metadata("design:paramtypes", [String, String, String, String])
+    __metadata("design:paramtypes", [String, String, String, String, Array])
 ], User);

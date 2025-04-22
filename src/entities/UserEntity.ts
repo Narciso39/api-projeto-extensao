@@ -5,10 +5,12 @@ import {
   Repository,
   BeforeInsert,
   BeforeUpdate,
+  OneToMany,
 } from "typeorm";
 import { AppDataSource } from "../config/data-source";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcryptjs";
+import { Expense } from "./ExpenseEntity";
 
 @Entity("users")
 export class User {
@@ -30,11 +32,15 @@ export class User {
     this.password = bcrypt.hashSync(this.password, 8);
   }
 
-  constructor(id?: string, name?: string, email?: string, password?: string) {
+  @OneToMany(() => Expense, (expense) => expense.user)
+  expenses?: Expense[];
+
+  constructor(id?: string, name?: string, email?: string, password?: string, expenses?: Expense[]) {
     if (id) this.id = id;
     if (name) this.name = name;
     if (email) this.email = email;
     if (password) this.password = password;
+    if (expenses) this.expenses = expenses;
   }
 
   @BeforeInsert()
@@ -46,4 +52,3 @@ export class User {
 
   static repository: Repository<User> = AppDataSource.getRepository(User);
 }
-

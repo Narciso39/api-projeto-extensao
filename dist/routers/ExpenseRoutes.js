@@ -1,26 +1,28 @@
 "use strict";
-// import { Router, Request, Response, NextFunction } from "express";
-// import authMiddleware from "../middlewares/authMiddleware";
-// import AuthController from "../controllers/AuthController";
-// import { UserController } from "../controllers/UserController";
-// export class ExpenseRoutes {
-//   private readonly _router: Router;
-//   constructor() {
-//     this._router = Router();
-//     this.configureRoutes();
-//   }
-//   private configureRoutes(): void {
-//     this.router.get("/", authMiddleware, this.handleRequest(UserController.getAllUsers));
-//   }
-//   private handleRequest(
-//     handler: (req: Request, res: Response) => Promise<any>
-//   ) {
-//     return (req: Request, res: Response, next: NextFunction) => {
-//       Promise.resolve(handler(req, res)).catch(next);
-//     };
-//   }
-//   public get router(): Router {
-//     return this._router;
-//   }
-// }
-// export default new ExpenseRoutes().router;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExpenseRoutes = void 0;
+const express_1 = require("express");
+const authMiddleware_1 = __importDefault(require("../middlewares/authMiddleware"));
+const ExpenseController_1 = require("../controllers/ExpenseController");
+class ExpenseRoutes {
+    constructor() {
+        this._router = (0, express_1.Router)();
+        this.configureRoutes();
+    }
+    configureRoutes() {
+        this.router.post("/", authMiddleware_1.default, this.handleRequest(ExpenseController_1.ExpenseController.createExpense));
+    }
+    handleRequest(handler) {
+        return (req, res, next) => {
+            Promise.resolve(handler(req, res)).catch(next);
+        };
+    }
+    get router() {
+        return this._router;
+    }
+}
+exports.ExpenseRoutes = ExpenseRoutes;
+exports.default = new ExpenseRoutes().router;

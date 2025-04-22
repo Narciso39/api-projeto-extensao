@@ -9,22 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExpenseController = void 0;
-const ExpenseModel_1 = require("../models/ExpenseModel");
-class ExpenseController {
-    static createExpense(req, res) {
+exports.ExpenseModel = void 0;
+const ExpenseRepository_1 = require("../repositories/ExpenseRepository");
+class ExpenseModel {
+    static createExpense(expenseData) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const expenseData = req.body;
-                console.log(expenseData);
-                const newExpense = yield ExpenseModel_1.ExpenseModel.createExpense(expenseData);
-                res.status(201).json(newExpense);
-            }
-            catch (error) {
-                console.error("Erro ao cadastrar o gasto:", error);
-                res.status(500).json(Object.assign({ message: "Erro ao cadastrar o gasto" }, (process.env.NODE_ENV === "development" && { details: error })));
-            }
+            console.log(expenseData);
+            return yield ExpenseRepository_1.ExpenseRepository.create(expenseData);
         });
     }
 }
-exports.ExpenseController = ExpenseController;
+exports.ExpenseModel = ExpenseModel;
