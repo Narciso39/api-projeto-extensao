@@ -9,7 +9,7 @@ class HelloWorldRoute {
         this.configureRoutes();
     }
     configureRoutes() {
-        this.router.post("/", this.handleRequest(HelloWolrdController_1.HelloWorld.helloWorld));
+        this.router.get("/", this.handleRequest(HelloWolrdController_1.HelloWorld.helloWorld));
     }
     handleRequest(handler) {
         return (req, res, next) => {

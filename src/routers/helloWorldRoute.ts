@@ -10,7 +10,7 @@ export class HelloWorldRoute {
   }
 
   private configureRoutes(): void {
-    this.router.post("/", this.handleRequest(HelloWorld.helloWorld));
+    this.router.get("/", this.handleRequest(HelloWorld.helloWorld));
   }
 
   private handleRequest(
