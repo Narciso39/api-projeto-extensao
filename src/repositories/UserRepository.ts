@@ -1,15 +1,15 @@
 import { UserCreateData } from "../@types/User.type";
 import { User } from "../entities/UserEntity";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 export class UserRepository {
   static async findAll() {
-    return await User.repository.find({select: ['id', 'name', 'email']});
+    return await User.repository.find({ select: ["id", "name", "email"] });
   }
 
-  static async create(userData: UserCreateData) { 
+  static async create(userData: UserCreateData) {
     const user = User.repository.create({
       ...userData,
-      id: uuidv4(), 
+      id: uuidv4(),
     });
     return await User.repository.save(user);
   }
@@ -27,9 +27,7 @@ export class UserRepository {
     return await User.repository.findOneBy({ id });
   }
 
-  static async findByEmail(email: string) {  
-    return await User.repository.findOneBy({ email });  
+  static async findByEmail(email: string) {
+    return await User.repository.findOneBy({ email });
   }
-
-  
 }

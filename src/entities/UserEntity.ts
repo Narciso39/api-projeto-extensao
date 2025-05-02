@@ -35,7 +35,13 @@ export class User {
   @OneToMany(() => Expense, (expense) => expense.user)
   expenses?: Expense[];
 
-  constructor(id?: string, name?: string, email?: string, password?: string, expenses?: Expense[]) {
+  constructor(
+    id?: string,
+    name?: string,
+    email?: string,
+    password?: string,
+    expenses?: Expense[]
+  ) {
     if (id) this.id = id;
     if (name) this.name = name;
     if (email) this.email = email;
