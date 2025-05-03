@@ -18,4 +18,13 @@ export class ExpenseController {
       });
     }
   }
+
+  static async showExpense(req: Request, res: Response): Promise<void> {
+    try {
+      const expenseData = await ExpenseModel.showExpense();
+    } catch (error) {
+      
+    }
+  }
+
 }

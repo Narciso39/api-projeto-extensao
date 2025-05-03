@@ -8,4 +8,10 @@ export class ExpenseModel {
         console.log(expenseData)
         return await ExpenseRepository.create(expenseData);
     }
+
+    static async showExpense(expenseData: ExpenseCreateData) {
+
+        // console.log(expenseData)
+        // return await ExpenseRepository.create(expenseData);
+    }
 }
