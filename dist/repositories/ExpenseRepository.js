@@ -36,7 +36,7 @@ class ExpenseRepository {
     }
     static findAndCount(options) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield ExpenseEntity_1.Expense.repository.findAndCount(Object.assign({ relations: ["user_id"] }, options));
+            return yield ExpenseEntity_1.Expense.repository.findAndCount(Object.assign({ relations: ["user"] }, options));
         });
     }
 }

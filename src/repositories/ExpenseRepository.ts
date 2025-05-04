@@ -28,7 +28,7 @@ export class ExpenseRepository {
 
       static async findAndCount(options?: FindManyOptions<Expense>) {
         return await Expense.repository.findAndCount({ 
-            relations: ["user_id"],
+            relations: ["user"],
             ...options 
         });
     }
