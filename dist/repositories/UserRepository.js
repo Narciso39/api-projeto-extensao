@@ -15,7 +15,7 @@ const uuid_1 = require("uuid");
 class UserRepository {
     static findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield UserEntity_1.User.repository.find({ select: ['id', 'name', 'email'] });
+            return yield UserEntity_1.User.repository.find({ select: ["id", "name", "email"] });
         });
     }
     static create(userData) {

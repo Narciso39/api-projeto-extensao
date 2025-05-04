@@ -18,5 +18,27 @@ class ExpenseModel {
             return yield ExpenseRepository_1.ExpenseRepository.create(expenseData);
         });
     }
+    static showExpense() {
+        return __awaiter(this, arguments, void 0, function* (page = 1, limit = 10, order = 'ASC') {
+            const take = limit > 0 && limit <= 100 ? limit : 10;
+            const skip = (page > 0 ? page - 1 : 0) * take;
+            const [expenses, total] = yield ExpenseRepository_1.ExpenseRepository.findAndCount({
+                take,
+                skip,
+                order: {
+                    created_at: order
+                }
+            });
+            return {
+                data: expenses,
+                meta: {
+                    total,
+                    page,
+                    last_page: Math.ceil(total / take),
+                    limit: take
+                }
+            };
+        });
+    }
 }
 exports.ExpenseModel = ExpenseModel;

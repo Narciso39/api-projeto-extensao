@@ -13,6 +13,7 @@ class ExpenseRoutes {
         this.configureRoutes();
     }
     configureRoutes() {
+        this.router.get("/", authMiddleware_1.default, this.handleRequest(ExpenseController_1.ExpenseController.showExpense));
         this.router.post("/", authMiddleware_1.default, this.handleRequest(ExpenseController_1.ExpenseController.createExpense));
     }
     handleRequest(handler) {

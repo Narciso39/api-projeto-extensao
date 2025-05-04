@@ -1,3 +1,4 @@
+import { FindManyOptions } from "typeorm";
 import { ExpenseCreateData } from "../@types/Expense.type";
 import { Expense } from "../entities/ExpenseEntity";
 import { User } from "../entities/UserEntity";
@@ -23,18 +24,13 @@ export class ExpenseRepository {
     
         return await Expense.repository.save(expense);
       }
-    //   static async update(id: string, userData: Partial<User>) {
-    //     await User.repository.update(id, userData);
-    //     return await User.repository.findOneBy({ id });
-    //   }
-    
-    //   static async delete(id: string) {
-    //     const result = await User.repository.delete(id);
-    //     return result.affected !== 0;
-    //   }
-    
-    //   static async findById(id: string) {
-    //     return await User.repository.findOneBy({ id });
-    //   }
-    
+
+
+      static async findAndCount(options?: FindManyOptions<Expense>) {
+        return await Expense.repository.findAndCount({ 
+            relations: ["user_id"],
+            ...options 
+        });
+    }
+   
 }

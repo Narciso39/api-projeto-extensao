@@ -3,7 +3,6 @@ import authMiddleware from "../middlewares/authMiddleware";
 import AuthController from "../controllers/AuthController";
 import { ExpenseController } from "../controllers/ExpenseController";
 
-
 export class ExpenseRoutes {
   private readonly _router: Router;
 
@@ -13,12 +12,17 @@ export class ExpenseRoutes {
   }
 
   private configureRoutes(): void {
-    
-    this.router.post("/", authMiddleware, this.handleRequest(ExpenseController.createExpense));
+    this.router.get(
+      "/",
+      authMiddleware,
+      this.handleRequest(ExpenseController.showExpense)
+    );
 
-  
-
-  
+    this.router.post(
+      "/",
+      authMiddleware,
+      this.handleRequest(ExpenseController.createExpense)
+    );
   }
 
   private handleRequest(

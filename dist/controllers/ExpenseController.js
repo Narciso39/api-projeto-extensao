@@ -26,5 +26,27 @@ class ExpenseController {
             }
         });
     }
+    static showExpense(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const page = parseInt(req.query.page) || 1;
+                const limit = parseInt(req.query.limit) || 10;
+                const order = req.query.order || "ASC";
+                if (isNaN(page) || page < 1) {
+                    res.status(400).json({ error: "Parâmetro 'page' inválido" });
+                }
+                if (isNaN(limit) || limit < 1 || limit > 100) {
+                    res.status(400).json({
+                        error: "O parâmetro 'limit' deve ser um número entre 1 e 100",
+                    });
+                }
+                const result = yield ExpenseModel_1.ExpenseModel.showExpense(page, limit, order);
+                res.status(200).json(result);
+            }
+            catch (error) {
+                res.status(500).json({ error: "Erro ao buscar despesas" });
+            }
+        });
+    }
 }
 exports.ExpenseController = ExpenseController;
