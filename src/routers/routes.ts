@@ -11,4 +11,5 @@ const hello = new HelloWorldRoute();
 router.use('/', hello.router)
 router.use('/api/users', userRoutes.router);
 router.use('/api/expenses', expenseRoutes.router);
+
 export default router;
